@@ -1,0 +1,41 @@
+﻿<script runat="server">
+
+    static int num=0;
+    static TextBox[] tb=new TextBox[10];
+    void AddExperience(Object sender, EventArgs e)
+    {
+        if (num < 10) // Чтобы не возникало ошибки обращения к несуществующему элементу массива
+        {
+            TextBox newBox = new TextBox();
+            newBox.ID = "box" + num;
+            tb[num] = newBox;
+            num++;
+         }
+        for (int i=0; i<10; i++) // Добавление на форму контролов из масива.
+        {
+            if (tb[i] != null)
+            {
+            places.Controls.Add(tb[i]);
+            Label lb=new Label();
+            lb.Text="<br><br>";
+            places.Controls.Add(lb);
+            }
+            else break;
+        }
+    }
+</script>
+<html xmlns=«http://www.w3.org/1999/xhtml»>
+<head>
+</head>
+<body>
+    <asp:Label ID="Label1" runat="server" text="Введите Ваше последнее место работы" />
+    <form runat="server" id="Experience">
+        <asp:Panel id="places" runat="server">
+            <asp:TextBox id="first" runat="server" />
+            <br />
+            <br />
+        </asp:Panel>
+        <asp:Button id="Add" Text="Еще" OnCommand="AddExperience" CommandName="Add" runat="server" />
+    </form>
+</body>
+</html>

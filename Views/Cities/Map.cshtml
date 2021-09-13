@@ -1,0 +1,61 @@
+@model IEnumerable<GisButtons.Models.City>
+
+
+@{
+    ViewData["Title"] = "Textbox";
+}
+
+<h2>Test</h2>
+@using (Html.BeginForm("Map", "Cities", FormMethod.Get))
+{
+    <p>
+        <label>Отметить города, где население</label><br />
+
+        <select name="moreless">
+            <option>Больше</option>
+            <option>Меньше</option>
+            <option>Равно</option>
+        </select> 
+        
+        <input type="text" Name="people" />
+    </p>
+    <p>
+        <input type="submit" value="OK" />
+    </p>
+}
+<div Id="map" style="width: 500px; height: 500px">
+</div>
+<script>
+
+        function initMap() {
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 2,
+                center: { lat: 55, lng: 37 }
+            });
+
+            // Create an array of alphabetical characters used to label the markers.
+            var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+            // Add some markers to the map.
+            // Note: The code uses the JavaScript Array.prototype.map() method to
+            // create an array of markers based on a given "locations" array.
+            // The map() method here has nothing to do with the Google Maps API.
+            var markers = locations.map(function (location, i) {
+                return new google.maps.Marker({
+                    position: location,
+                    label: labels[i % labels.length]
+                });
+            });
+
+            // Add a marker clusterer to manage the markers.
+            var markerCluster = new MarkerClusterer(map, markers,
+                { imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m' });
+        }
+        var locations = @Html.Raw(ViewBag.Locations);
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+</script>
+<script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWHYSCHpIdpqI9vhyxMPZ8_hXSU0EWJC0&amp;callback=initMap">
+</script>
+

@@ -1,0 +1,48 @@
+@model GisButtons.Models.City
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>City</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.People)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.People)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Coord)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Coord)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Video)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Video)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-Id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

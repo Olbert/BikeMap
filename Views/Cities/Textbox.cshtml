@@ -1,0 +1,71 @@
+@model IEnumerable<GisButtons.Models.City>
+
+
+@{
+    ViewData["Title"] = "Textbox";
+}
+
+<h2>Test</h2>
+
+@using (Html.BeginForm("Textbox", "Cities", FormMethod.Get))
+{
+    <p>
+        <label>Напишите первую букву города </label><br />
+        <input type="text" Name="letter" />
+    </p>
+    <p>
+        <input type="submit" value="OK" />
+    </p>
+}
+
+<th>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.People)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Coord)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Video)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.People)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Coord)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Photo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Video)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-Id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-Id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-Id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</th>
